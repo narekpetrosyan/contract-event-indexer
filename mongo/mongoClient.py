@@ -1,10 +1,12 @@
+import os
+
 from pymongo import MongoClient
 
 
 class DataBase:
     def __init__(self, db_name: str) -> None:
         self.client = MongoClient(
-            "mongodb+srv://narek:narek@cluster0.debap.mongodb.net/?retryWrites=true&w=majority")
+            f"{os.getenv('MONGO_URI')}")
         self.db = self.client[db_name]
 
     def is_connected(self):
